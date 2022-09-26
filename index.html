@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<title>萤火虫</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="description" content="description">
+		<meta name="keywords" content="keywords">
+		<meta name="viewport"
+			content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<link rel="shortcut icon" type="image/x-icon" href="./lib/images/logo.svg">
+		<link rel="stylesheet" href="./index.css">
+		<link rel="stylesheet" href="./lib/vue.min@5.2.2.min.css">
+
+	</head>
+	<body>
+		<div class="doc-header">
+			<div class="nav-left">
+				<a href="#/">
+					<div class="logo-box">
+						<h1 class="logo-text">萤火虫</h1>
+					</div>
+				</a>
+			</div>
+			<nav class="nav-right">
+				<div class="sear-box p-none" tabindex="-1">
+				</div>
+				<a class="wzi" href="#/">首页</a>
+				<a class="wzi" href="#/more/README">学习与提高</a>
+				<a class="p-none wzi" href="https://www.yuque.com/" target="_blank">语雀</a>
+			</nav>
+		</div>
+
+		<div class="main-box">
+			<div id="app">加载中...</div>
+		</div>
+
+		<!-- UI逐渐显现 -->
+		<style type="text/css">
+			body {
+				opacity: 0.01;
+				transition: opacity 0.5s;
+				background-color: #FFF;
+			}
+		</style>
+
+		<script type="text/javascript">
+			setTimeout(function() {
+				document.body.style.opacity = 1;
+			}, 1);
+		</script>
+
+		<!-- docsify 插件 -->
+		<script src="./lib/docsify-plugin.js"></script>
+
+		<script>
+			window.$docsify = {
+				// name: name,
+				themeColor: '#009c00', // 主题颜色  
+				// basePath: location.pathname.substr(0, location.pathname.lastIndexOf('/') + 1), // 自动计算项目名字 
+				// basePath: '/',		// 设置文件加载的父路径, 这在一些带项目名部署的文件中非常有效
+				relativePath: true, //	使用相对路径
+				auto2top: true, // 是否在切换页面后回到顶部 
+				autoHeader: false, //在文章头部添加侧边栏标题
+				coverpage: false, //封面页
+				executeScript: true, //执行页面上的脚本。只解析第一个脚本标记（演示）。如果存在Vue，则默认开
+				maxLevel: 3, //最大的内容表级别
+				subMaxLevel: 2, // 标题解析层级, 写几就在目录树中解析到几级标题 ,一般写2吧也就 
+				loadSidebar: true, // 加载自定义侧边栏 , 目录定制在: _sidebar.md 文件 (需要创建 .nojekyll 的空文件，阻止 GitHub Pages 忽略命名是下划线开头的文件)
+				topMargin: 0, // 锚点距离顶部的距离,新版支持
+				sidebarDisplayLevel: 2, // 设置侧边栏显示级别
+				externalLinkTarget: '_blank', //外链打开方式：_blank表示在新标签页中打开
+				copyCode: {
+					buttonText: '复制',
+					errorText: '失败',
+					successText: '成功'
+				},
+				search: {
+					maxAge: 86400000,
+					placeholder: '搜索...',
+					noData: '没有结果 ！',
+				},
+				// alias: {
+				// 	'/.*/_sidebar.md': '/_sidebar.md'
+				// },
+				tabs: { //read paper: https://jhildenbiddle.github.io/docsify-tabs/#/
+					persist: false, //刷新页面时重置选项卡，实际上我测试的是false是重置
+					sync: false, //页面上的多个tab是否同步切换
+					theme: 'classic', //主题：'classic', 'material', false
+					tabComments: true, //用注释来标注选项卡标题，例如：<!-- tab:SpringBoot  -->
+					tabHeadings: true //用标题+粗体来定制选项卡
+				},
+				plugins: [myDocsifyPlugin], // 自定义插件
+				// routerMode: 'history',	//路由模式
+			}
+		</script>
+		<script src="./lib/docsify@4.12.2.min.js"></script>
+		<script src="./lib/docsify-copy-code@2.1.1.min.js"></script>
+		<script src="./lib/search.min.js"></script>
+		<script src="./lib/docsify-tabs@1.5.2.min.js"></script>
+
+		<!-- <script src="./lib/zoom-image@4.12.2.min.js"></script> -->
+
+		<script src="./lib/prism-sql@1.27.0.min.js"></script>
+		<script src="./lib/prism-javascript@1.27.0.min.js"></script>
+		<script src="./lib/prism-bash@1.28.0.min.js"></script>
+		<script src="./lib/prism-java@1.28.0.min.js"></script>
+		<script src="./lib/prism-python@1.28.0.min.js"></script>
+		<script src="./lib/prism-json@1.28.0.min.js"></script>
+
+		<!-- 回到顶部功能 -->
+		<script src="./lib/jquery@3.4.1.min.js"></script>
+		<script src="./lib/jquery.goup@1.1.3.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$.goup({
+					trigger: 100,
+					bottomOffset: 52,
+					locationOffset: 25,
+					title: 'TOP',
+					titleAsText: true
+				});
+			});
+		</script>
+
+		<!-- 实现离线化 -->
+		<script>
+			if (typeof navigator.serviceWorker !== 'undefined') {
+				navigator.serviceWorker.register('./lib/pwa.js')
+			}
+		</script>
+	</body>
+</html>
